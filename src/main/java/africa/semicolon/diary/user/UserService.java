@@ -1,6 +1,7 @@
 package africa.semicolon.diary.user;
 
 import africa.semicolon.diary.exceptions.user.UserNotFoundException;
+import africa.semicolon.diary.userProfile.UserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
@@ -63,6 +64,12 @@ public class UserService {
             throw new UserNotFoundException("User with id {" + id + "} not found");
         }
 
+        return userRepository.save(user);
+    }
+
+    public User assignProfile(int id, UserProfile profile) {
+        User user = foundUserWithThis(id);
+        user.setUserProfile(profile);
         return userRepository.save(user);
     }
 

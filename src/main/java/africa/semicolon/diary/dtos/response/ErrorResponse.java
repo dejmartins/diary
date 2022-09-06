@@ -1,4 +1,4 @@
-package africa.semicolon.diary.user.userResponses;
+package africa.semicolon.diary.dtos.response;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
@@ -12,7 +12,7 @@ import java.time.ZonedDateTime;
 @NoArgsConstructor
 @Setter
 @Getter
-public class UserErrorResponse {
+public class ErrorResponse {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private ZonedDateTime timeStamp;
     private int statusCode;

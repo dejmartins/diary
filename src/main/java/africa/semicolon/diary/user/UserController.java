@@ -1,5 +1,7 @@
 package africa.semicolon.diary.user;
 
+import africa.semicolon.diary.userProfile.UserProfile;
+import africa.semicolon.diary.userProfile.UserProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +14,9 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    UserProfileService userProfileService;
 
     @PostMapping
     public User createUser(@RequestBody User user){
@@ -42,6 +47,12 @@ public class UserController {
     @DeleteMapping("/{id}")
     public void deleteUser(@PathVariable int id){
         userService.deleteUser(id);
+    }
+
+    @PutMapping({"/{id}/profiles/{profile_id}"})
+    public User assignProfile(@PathVariable int id, @PathVariable int profile_id ){
+        UserProfile profile = userProfileService.findUserProfile(profile_id);
+        return userService.assignProfile(id, profile);
     }
 
 }
