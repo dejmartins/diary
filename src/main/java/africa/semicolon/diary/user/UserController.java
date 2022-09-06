@@ -31,6 +31,7 @@ public class UserController {
         return userService.updateUser(id, user);
     }
 
+    @PatchMapping("/{id}")
     public User changeEmail(@PathVariable int id,
                             @RequestBody Map<String, Object> emailAddressPatched){
         return userService.changeEmailAddress(id, emailAddressPatched);
