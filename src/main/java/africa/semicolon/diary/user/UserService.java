@@ -1,5 +1,7 @@
 package africa.semicolon.diary.user;
 
+import africa.semicolon.diary.exceptions.user.UserNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ReflectionUtils;
 
@@ -11,6 +13,7 @@ import java.util.Optional;
 @Service
 public class UserService {
 
+    @Autowired
     UserRepository userRepository;
 
     public User createUser(User user){
@@ -25,7 +28,12 @@ public class UserService {
     private User foundUserWithThis(int id){
         User user = null;
         Optional<User> foundUser = userRepository.findById(id);
-        if(foundUser.isPresent()) user = foundUser.get();
+        if(foundUser.isPresent()){
+            user = foundUser.get();
+        } else {
+            throw new UserNotFoundException("User with id {" + id + "} not found");
+        }
+
         return user;
     }
 
@@ -40,7 +48,7 @@ public class UserService {
         return userRepository.save(foundUser);
     }
 
-    public User changeEmailAddress(int id, Map<String, Object> emailAddressPatched){
+    public User updateEmailAddress(int id, Map<String, Object> emailAddressPatched){
         Optional<User> foundUser = userRepository.findById(id);
         User user = null;
 
@@ -51,11 +59,15 @@ public class UserService {
                 ReflectionUtils.makeAccessible(field);
                 ReflectionUtils.setField(field, foundUser.get(), value);
             });
+        } else {
+            throw new UserNotFoundException("User with id {" + id + "} not found");
         }
+
         return userRepository.save(user);
     }
 
     public void deleteUser(int id){
-        userRepository.deleteById(id);
+        User foundUser = foundUserWithThis(id);
+        userRepository.delete(foundUser);
     }
 }

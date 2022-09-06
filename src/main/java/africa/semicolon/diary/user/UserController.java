@@ -1,5 +1,6 @@
 package africa.semicolon.diary.user;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.Map;
 @RequestMapping("/users")
 public class UserController {
 
+    @Autowired
     UserService userService;
 
     @PostMapping
@@ -34,7 +36,7 @@ public class UserController {
     @PatchMapping("/{id}")
     public User changeEmail(@PathVariable int id,
                             @RequestBody Map<String, Object> emailAddressPatched){
-        return userService.changeEmailAddress(id, emailAddressPatched);
+        return userService.updateEmailAddress(id, emailAddressPatched);
     }
 
     @DeleteMapping("/{id}")
