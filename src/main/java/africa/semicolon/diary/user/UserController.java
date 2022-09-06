@@ -37,4 +37,9 @@ public class UserController {
         return userService.changeEmailAddress(id, emailAddressPatched);
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteUser(@PathVariable int id){
+        userService.deleteUser(id);
+    }
+
 }
