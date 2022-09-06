@@ -11,7 +11,7 @@ import java.util.Optional;
 @Service
 public class UserService {
 
-    private UserRepository userRepository;
+    UserRepository userRepository;
 
     public User createUser(User user){
         user.setId(0);
