@@ -25,6 +25,10 @@ public class DiaryService {
         return diaryRepository.save(diary);
     }
 
+    public Diary getDiary(int id){
+        return foundDiaryWithThis(id);
+    }
+
     public ResponseEntity<ApiResponse> accessDiary(int id, DiaryAccessRequest diaryAccessRequest) {
         Diary foundDiary = foundDiaryWithThis(id);
         if (locksMatches(diaryAccessRequest.getLock(), foundDiary.getLock())){

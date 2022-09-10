@@ -32,4 +32,12 @@ public class User {
     public void setUsername(String username){
         this.username = "@"+username;
     }
+
+    public void addDiary(Diary diary){
+        diaryList.add(diary);
+    }
+
+    public void removeDiary(Diary diary){
+        diaryList.remove(diary);
+    }
 }

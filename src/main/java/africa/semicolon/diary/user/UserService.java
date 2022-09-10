@@ -1,5 +1,6 @@
 package africa.semicolon.diary.user;
 
+import africa.semicolon.diary.diary.Diary;
 import africa.semicolon.diary.exceptions.user.UserNotFoundException;
 import africa.semicolon.diary.userProfile.UserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -76,5 +77,17 @@ public class UserService {
     public void deleteUser(int id){
         User foundUser = foundUserWithThis(id);
         userRepository.delete(foundUser);
+    }
+
+    public User addDiary(int id, Diary diary) {
+        User foundUser = foundUserWithThis(id);
+        foundUser.addDiary(diary);
+        return userRepository.save(foundUser);
+    }
+
+    public User removeDiary(int id, Diary diary){
+        User foundUser = foundUserWithThis(id);
+        foundUser.removeDiary(diary);
+        return userRepository.save(foundUser);
     }
 }

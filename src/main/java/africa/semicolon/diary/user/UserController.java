@@ -1,5 +1,7 @@
 package africa.semicolon.diary.user;
 
+import africa.semicolon.diary.diary.Diary;
+import africa.semicolon.diary.diary.DiaryService;
 import africa.semicolon.diary.userProfile.UserProfile;
 import africa.semicolon.diary.userProfile.UserProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,9 @@ public class UserController {
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    DiaryService diaryService;
 
     @Autowired
     UserProfileService userProfileService;
@@ -53,6 +58,18 @@ public class UserController {
     public User assignProfile(@PathVariable int id, @PathVariable int profile_id ){
         UserProfile profile = userProfileService.findUserProfile(profile_id);
         return userService.assignProfile(id, profile);
+    }
+
+    @PutMapping("/{id}/add_diary/{diary_id}")
+    public User addDiary(@PathVariable int id, @PathVariable int diary_id){
+        Diary diary = diaryService.getDiary(diary_id);
+        return userService.addDiary(id, diary);
+    }
+
+    @PutMapping("/{id}/remove_diary/{diary_id}")
+    public User removeDiary(@PathVariable int id, @PathVariable int diary_id){
+        Diary diary = diaryService.getDiary(id);
+        return userService.removeDiary(id, diary);
     }
 
 }
