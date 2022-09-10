@@ -29,12 +29,7 @@ public class DiaryService {
     public ResponseEntity<ApiResponse> accessDiary(int id, DiaryAccessRequest diaryAccessRequest) {
         Diary foundDiary = foundDiaryWithThis(id);
         if (locksMatches(diaryAccessRequest.getLock(), foundDiary.getLock())){
-            ApiResponse apiResponse = ApiResponse.builder()
-                    .timeStamp(ZonedDateTime.now())
-                    .statusCode(HttpStatus.OK.value())
-                    .message("Diary accessed successfully")
-                    .build();
-            return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+            return diarySuccessfullyAccessedResponse();
         }
         else {
             throw new InvalidLockException("Incorrect lock");
@@ -44,6 +39,16 @@ public class DiaryService {
     public void deleteDiary(int id){
         Diary foundDiary = foundDiaryWithThis(id);
         diaryRepository.delete(foundDiary);
+    }
+
+    //Helper Methods
+    private ResponseEntity<ApiResponse> diarySuccessfullyAccessedResponse(){
+        ApiResponse apiResponse = ApiResponse.builder()
+                .timeStamp(ZonedDateTime.now())
+                .statusCode(HttpStatus.OK.value())
+                .message("Diary accessed successfully")
+                .build();
+        return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
 
     private Diary foundDiaryWithThis(int id){
