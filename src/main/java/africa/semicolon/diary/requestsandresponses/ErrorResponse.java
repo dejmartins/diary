@@ -1,4 +1,4 @@
-package africa.semicolon.diary.dtos.response;
+package africa.semicolon.diary.requestsandresponses;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
