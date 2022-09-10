@@ -1,4 +1,4 @@
-package africa.semicolon.diary.requestsandresponses;
+package africa.semicolon.diary.requestsandresponses.response;
 
 import lombok.*;
 

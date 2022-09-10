@@ -1,6 +1,6 @@
 package africa.semicolon.diary.diary;
 
-import africa.semicolon.diary.requestsandresponses.ApiResponse;
+import africa.semicolon.diary.requestsandresponses.response.ApiResponse;
 import africa.semicolon.diary.requestsandresponses.DiaryAccessRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

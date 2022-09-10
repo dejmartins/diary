@@ -1,15 +1,14 @@
 package africa.semicolon.diary.diary;
 
+import africa.semicolon.diary.exceptions.diary.DiaryNotFoundException;
 import africa.semicolon.diary.exceptions.diary.InvalidLockException;
-import africa.semicolon.diary.exceptions.user.UserNotFoundException;
-import africa.semicolon.diary.requestsandresponses.ApiResponse;
+import africa.semicolon.diary.requestsandresponses.response.ApiResponse;
 import africa.semicolon.diary.requestsandresponses.DiaryAccessRequest;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.function.EntityResponse;
 
 import java.time.ZonedDateTime;
 import java.util.Optional;
@@ -57,7 +56,7 @@ public class DiaryService {
         if(foundDiary.isPresent()){
             diary = foundDiary.get();
         } else {
-            throw new UserNotFoundException("User with id {" + id + "} not found");
+            throw new DiaryNotFoundException("Diary with id {" + id + "} not found");
         }
         return diary;
     }
