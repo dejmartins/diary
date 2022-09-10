@@ -1,7 +1,9 @@
 package africa.semicolon.diary.diary;
 
+import africa.semicolon.diary.requestsandresponses.ApiResponse;
 import africa.semicolon.diary.requestsandresponses.DiaryAccessRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -22,7 +24,8 @@ public class DiaryController {
     }
 
     @GetMapping("/{id}")
-    public Diary accessDiary(@PathVariable int id, @RequestBody DiaryAccessRequest diaryAccessRequest) {
+    public ResponseEntity<ApiResponse> accessDiary(@PathVariable int id,
+                                                   @RequestBody DiaryAccessRequest diaryAccessRequest) {
         return diaryService.accessDiary(id, diaryAccessRequest);
     }
 }

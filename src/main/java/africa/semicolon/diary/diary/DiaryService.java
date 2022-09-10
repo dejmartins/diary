@@ -2,11 +2,16 @@ package africa.semicolon.diary.diary;
 
 import africa.semicolon.diary.exceptions.diary.InvalidLockException;
 import africa.semicolon.diary.exceptions.user.UserNotFoundException;
+import africa.semicolon.diary.requestsandresponses.ApiResponse;
 import africa.semicolon.diary.requestsandresponses.DiaryAccessRequest;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.function.EntityResponse;
 
+import java.time.ZonedDateTime;
 import java.util.Optional;
 
 @Service
@@ -21,9 +26,16 @@ public class DiaryService {
         return diaryRepository.save(diary);
     }
 
-    public Diary accessDiary(int id, DiaryAccessRequest diaryAccessRequest) {
+    public ResponseEntity<ApiResponse> accessDiary(int id, DiaryAccessRequest diaryAccessRequest) {
         Diary foundDiary = foundDiaryWithThis(id);
-        if (locksMatches(diaryAccessRequest.getLock(), foundDiary.getLock())) return foundDiary;
+        if (locksMatches(diaryAccessRequest.getLock(), foundDiary.getLock())){
+            ApiResponse apiResponse = ApiResponse.builder()
+                    .timeStamp(ZonedDateTime.now())
+                    .statusCode(HttpStatus.OK.value())
+                    .message("Diary accessed successfully")
+                    .build();
+            return new ResponseEntity<>(apiResponse, HttpStatus.OK);
+        }
         else {
             throw new InvalidLockException("Incorrect lock");
         }
