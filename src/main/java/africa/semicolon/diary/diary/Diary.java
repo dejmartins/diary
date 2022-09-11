@@ -22,5 +22,13 @@ public class Diary {
     private String lock;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "entry_id")
-    private List<Entry> entry = new ArrayList<>();
+    private List<Entry> entryList = new ArrayList<>();
+
+    public void addEntry(Entry entry){
+        entryList.add(entry);
+    }
+
+    public void removeEntry(Entry entry){
+        entryList.remove(entry);
+    }
 }

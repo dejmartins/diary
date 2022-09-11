@@ -13,7 +13,6 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,4 +39,9 @@ public class User {
     public void removeDiary(Diary diary){
         diaryList.remove(diary);
     }
+
+    public List<Diary> getAllDiaries(){
+        return diaryList;
+    }
+
 }
