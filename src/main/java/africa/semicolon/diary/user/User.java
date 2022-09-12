@@ -40,8 +40,8 @@ public class User {
         diaryList.remove(diary);
     }
 
-    public List<Diary> getAllDiaries(){
-        return diaryList;
-    }
+//    public List<Diary> getAllDiaries(){
+//        return diaryList;
+//    }
 
 }

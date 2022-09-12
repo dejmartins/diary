@@ -72,9 +72,9 @@ public class UserController {
         return userService.removeDiary(id, diary);
     }
 
-    @GetMapping("/{id}/my_diaries")
-    public List<Diary> getAllDiaries(@PathVariable int id){
-        return userService.allDiaries(id);
-    }
+//    @GetMapping("/{id}/my_diaries")
+//    public List<Diary> getAllDiaries(@PathVariable int id){
+//        return userService.allDiaries(id);
+//    }
 
 }

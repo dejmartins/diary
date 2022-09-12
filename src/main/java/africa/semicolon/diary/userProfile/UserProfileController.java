@@ -13,7 +13,7 @@ public class UserProfileController {
     UserProfileService userProfileService;
 
     @PostMapping
-    public UserProfile addUserProfile(@RequestBody UserProfile userProfile){
+    public UserProfile createUserProfile(@RequestBody UserProfile userProfile){
         return userProfileService.addUserProfile(userProfile);
     }
 

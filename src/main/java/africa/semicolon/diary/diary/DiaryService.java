@@ -53,10 +53,10 @@ public class DiaryService {
         diaryRepository.save(foundDiary);
     }
 
-    public List<Entry> getAllEntries(int id){
-        Diary foundDiary = foundDiaryWithThis(id);
-        return foundDiary.getAllEntries();
-    }
+//    public List<Entry> getAllEntries(int id){
+//        Diary foundDiary = foundDiaryWithThis(id);
+//        return foundDiary.getAllEntries();
+//    }
 
     public void deleteDiary(int id){
         Diary foundDiary = foundDiaryWithThis(id);

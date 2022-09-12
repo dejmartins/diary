@@ -32,7 +32,7 @@ public class Diary {
         entryList.remove(entry);
     }
 
-    public List<Entry> getAllEntries(){
-        return entryList;
-    }
+//    public List<Entry> getAllEntries(){
+//        return entryList;
+//    }
 }

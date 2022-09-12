@@ -91,10 +91,10 @@ public class UserService {
         return userRepository.save(foundUser);
     }
 
-    public List<Diary> allDiaries(int id){
-        User foundUser = foundUserWithThis(id);
-        return foundUser.getAllDiaries();
-    }
+//    public List<Diary> allDiaries(int id){
+//        User foundUser = foundUserWithThis(id);
+//        return foundUser.getAllDiaries();
+//    }
 
 
 }

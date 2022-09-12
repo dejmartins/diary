@@ -48,8 +48,8 @@ public class DiaryController {
         diaryService.removeEntry(id, entry);
     }
 
-    @GetMapping("/{id}/all_entries")
-    public List<Entry> addEntry(@PathVariable int id){
-        return diaryService.getAllEntries(id);
-    }
+//    @GetMapping("/{id}/all_entries")
+//    public List<Entry> getAllEntries(@PathVariable int id){
+//        return diaryService.getAllEntries(id);
+//    }
 }
