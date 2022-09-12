@@ -1,7 +1,6 @@
 package africa.semicolon.diary.userProfile;
 
-import africa.semicolon.diary.exceptions.user.UserNotFoundException;
-import africa.semicolon.diary.exceptions.userProfile.UserProfileNotFoundException;
+import africa.semicolon.diary.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,7 +28,7 @@ public class UserProfileService {
         if(foundProfile.isPresent()){
             profile = foundProfile.get();
         } else {
-            throw new UserProfileNotFoundException("User profile with id {" + id + "} not found");
+            throw new NotFoundException("User profile with id {" + id + "} not found");
         }
         return profile;
     }

@@ -1,7 +1,7 @@
 package africa.semicolon.diary.diary;
 
 import africa.semicolon.diary.entry.Entry;
-import africa.semicolon.diary.exceptions.diary.DiaryNotFoundException;
+import africa.semicolon.diary.exceptions.NotFoundException;
 import africa.semicolon.diary.exceptions.diary.InvalidLockException;
 import africa.semicolon.diary.requestsandresponses.response.ApiResponse;
 import africa.semicolon.diary.requestsandresponses.DiaryAccessRequest;
@@ -79,7 +79,7 @@ public class DiaryService {
         if(foundDiary.isPresent()){
             diary = foundDiary.get();
         } else {
-            throw new DiaryNotFoundException("Diary with id {" + id + "} not found");
+            throw new NotFoundException("Diary with id {" + id + "} not found");
         }
         return diary;
     }

@@ -1,7 +1,7 @@
 package africa.semicolon.diary.user;
 
 import africa.semicolon.diary.diary.Diary;
-import africa.semicolon.diary.exceptions.user.UserNotFoundException;
+import africa.semicolon.diary.exceptions.NotFoundException;
 import africa.semicolon.diary.userProfile.UserProfile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,7 +33,7 @@ public class UserService {
         if(foundUser.isPresent()){
             user = foundUser.get();
         } else {
-            throw new UserNotFoundException("User with id {" + id + "} not found");
+            throw new NotFoundException("User with id {" + id + "} not found");
         }
 
         return user;
@@ -62,7 +62,7 @@ public class UserService {
                 ReflectionUtils.setField(field, foundUser.get(), value);
             });
         } else {
-            throw new UserNotFoundException("User with id {" + id + "} not found");
+            throw new NotFoundException("User with id {" + id + "} not found");
         }
 
         return userRepository.save(user);

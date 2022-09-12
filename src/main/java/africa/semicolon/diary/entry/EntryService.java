@@ -1,6 +1,6 @@
 package africa.semicolon.diary.entry;
 
-import africa.semicolon.diary.exceptions.diary.DiaryNotFoundException;
+import africa.semicolon.diary.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,7 +42,7 @@ public class EntryService {
         if(foundEntry.isPresent()){
             entry = foundEntry.get();
         } else {
-            throw new DiaryNotFoundException("Diary with id {" + id + "} not found");
+            throw new NotFoundException("Entry with id {" + id + "} not found");
         }
         return entry;
     }
