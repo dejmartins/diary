@@ -1,5 +1,6 @@
 package africa.semicolon.diary.diary;
 
+import africa.semicolon.diary.entry.Entry;
 import africa.semicolon.diary.exceptions.diary.DiaryNotFoundException;
 import africa.semicolon.diary.exceptions.diary.InvalidLockException;
 import africa.semicolon.diary.requestsandresponses.response.ApiResponse;
@@ -11,6 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.time.ZonedDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -37,6 +39,23 @@ public class DiaryService {
         else {
             throw new InvalidLockException("Incorrect lock");
         }
+    }
+
+    public void addEntry(int id, Entry entry){
+        Diary foundDiary = foundDiaryWithThis(id);
+        foundDiary.addEntry(entry);
+        diaryRepository.save(foundDiary);
+    }
+
+    public void removeEntry(int id, Entry entry){
+        Diary foundDiary = foundDiaryWithThis(id);
+        foundDiary.removeEntry(entry);
+        diaryRepository.save(foundDiary);
+    }
+
+    public List<Entry> getAllEntries(int id){
+        Diary foundDiary = foundDiaryWithThis(id);
+        return foundDiary.getAllEntries();
     }
 
     public void deleteDiary(int id){

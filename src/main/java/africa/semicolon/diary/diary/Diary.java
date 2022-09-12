@@ -31,4 +31,8 @@ public class Diary {
     public void removeEntry(Entry entry){
         entryList.remove(entry);
     }
+
+    public List<Entry> getAllEntries(){
+        return entryList;
+    }
 }
