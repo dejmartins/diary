@@ -2,6 +2,10 @@ package africa.semicolon.diary.entry;
 
 import africa.semicolon.diary.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,9 +26,9 @@ public class EntryService {
         return foundEntryWithThis(id);
     }
 
-    public List<Entry> getAllEntries(){
-        return entryRepository.findAll();
-    }
+//    public List<Entry> getAllEntries(){
+//        return entryRepository.findAll();
+//    }
 
     public Entry updateEntry(int id, Entry entry){
         Entry foundEntry = foundEntryWithThis(id);
@@ -34,6 +38,10 @@ public class EntryService {
     public void deleteEntry(int id){
         Entry foundEntry = foundEntryWithThis(id);
         entryRepository.delete(foundEntry);
+    }
+
+    public Page<Entry> getAllEntries(Pageable pageable){
+        return entryRepository.findAll(pageable);
     }
 
     private Entry foundEntryWithThis(int id){
